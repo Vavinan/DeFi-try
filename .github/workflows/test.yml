@@ -13,6 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+    env:
+      PRIVATE_KEY_ANVIL: ${{ secrets.PRIVATE_KEY_ANVIL }}
     steps:
       - uses: actions/checkout@v6
         with:
