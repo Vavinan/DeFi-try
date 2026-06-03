@@ -15,6 +15,8 @@ contract HelperConfig is Script {
         uint256 deployerkey;
     }
 
+    uint256 public DEFAULT_ANVIL_KEY = 0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d;
+
     uint8 public constant DECIMALS = 8;
     int256 public constant ETH_USD_PRICE = 2000e8;
     int256 public constant BTC_USD_PRICE = 1000e8;
@@ -55,14 +57,12 @@ contract HelperConfig is Script {
         ERC20MockCustom wBtcMock = new ERC20MockCustom("WBTC", "WBTC", msg.sender, 1000e8);
 
         vm.stopBroadcast();
-        bytes32 privateKey = vm.envBytes32("PRIVATE_KEY_ANVIL");
-
         return NetworkConfig({
             wEthUsdPriceFeed: address(ethUsdPriceFeed),
             wBtcUsdPricefeed: address(btcUsdPriceFeed),
             wEth: address(wEthMock),
             wBtc: address(wBtcMock),
-            deployerkey: uint256(privateKey)
+            deployerkey: DEFAULT_ANVIL_KEY
         });
     }
 }
