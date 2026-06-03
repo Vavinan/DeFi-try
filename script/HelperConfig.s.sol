@@ -55,13 +55,14 @@ contract HelperConfig is Script {
         ERC20MockCustom wBtcMock = new ERC20MockCustom("WBTC", "WBTC", msg.sender, 1000e8);
 
         vm.stopBroadcast();
+        bytes32 privateKey = vm.envBytes32("PRIVATE_KEY_ANVIL");
 
         return NetworkConfig({
             wEthUsdPriceFeed: address(ethUsdPriceFeed),
             wBtcUsdPricefeed: address(btcUsdPriceFeed),
             wEth: address(wEthMock),
             wBtc: address(wBtcMock),
-            deployerkey: vm.envUint("PRIVATE_KEY_ANVIL")
+            deployerkey: uint256(privateKey)
         });
     }
 }
